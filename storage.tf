@@ -7,6 +7,7 @@ locals {
 }
 
 resource "random_string" "random" {
+  for_each = local.storage_accounts
   length  = 8
   special = false
   lower   = true
@@ -17,7 +18,7 @@ resource "random_string" "random" {
 
 resource "azurerm_storage_account" "storage_accounts" {
   for_each                 = local.storage_accounts
-  name                     = "${each.value}${random_string.random.result}"
+  name                     = "${each.value}${random_string.random[each.key].result}"
   resource_group_name      = azurerm_resource_group.resource_group.name
   location                 = azurerm_resource_group.resource_group.location
   account_tier             = "Standard"
