@@ -1,6 +1,6 @@
 locals {
-tags = {
+  tags = {
     "Environment" = "prod"
-    "Created By" = "terraform"
-}
+    "Created By"  = "terraform"
+  }
 }

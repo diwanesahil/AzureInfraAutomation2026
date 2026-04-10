@@ -15,6 +15,4 @@ provider "azurerm" {
   # Configuration options
   features {}
   subscription_id = var.subscription_id
-  #tenant_id = "e23a194e-fe58-4ac1-9edf-c7914a469ba1"
-
-  }
+}
