@@ -1,18 +1,36 @@
-# Create Virtual Network
-resource "azurerm_virtual_network" "Production-vnet" {
-  name                = var.Virtual-network-name
+module "primary_vnet" {
+  source = "./modules/vnet"
+
+  vnet_name           = var.Virtual-network-name
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
-  address_space       = var.address_space
-  tags                = local.tags
+  address_space       = var.vnet_config["primary"].address_space
+  subnets = {
+    app = {
+      address_prefixes = var.address_prefixes_appsubnet
+    }
+    db = {
+      address_prefixes = var.address_prefixes_dbsubnet
+    }
+  }
 }
 
-# Create Virtual network Subnet
+module "secondary_vnet" {
+  source = "./modules/vnet"
 
-resource "azurerm_subnet" "websubnet" {
-  virtual_network_name = azurerm_virtual_network.Production-vnet.name
-  resource_group_name  = azurerm_resource_group.resource_group.name
-  name                 = "${var.Virtual-network-name}-websubnet"
-  address_prefixes     = var.address_prefixes
-
+  vnet_name           = var.Virtual-network-name_prod
+  resource_group_name = azurerm_resource_group.resource_group.name
+  location            = azurerm_resource_group.resource_group.location
+  address_space       = var.vnet_config["secondary"].address_space
+  subnets = {
+    app = {
+      address_prefixes = var.address_prefixes_appsubnet_secondary
+    }
+    db = {
+      address_prefixes = var.address_prefixes_dbsubnet_secondary
+    }
+  }
 }
+
+
+

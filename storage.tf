@@ -1,5 +1,5 @@
 # create azure storage account
-locals {
+/*locals {
   storage_accounts = {
     sa1 = "stgaccounts"
     sa2 = "stgaccounts"
@@ -25,4 +25,4 @@ resource "azurerm_storage_account" "storage_accounts" {
   account_replication_type = "LRS"
 
 
-}
+}*/
