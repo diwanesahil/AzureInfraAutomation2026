@@ -9,3 +9,7 @@ output "vnet_name" {
 output "subnet_ids" {
   value = { for name, subnet in azurerm_subnet.this : name => subnet.id }
 }
+
+output "nsg_id" {
+  value = azurerm_network_security_group.this.id
+}

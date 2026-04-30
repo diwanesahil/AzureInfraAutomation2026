@@ -1,5 +1,5 @@
 # Windows VM in Primary VNet
-module "primary_windowsvm" {
+/*module "primary_windowsvm" {
   source = "./modules/windowsvm"
 
   vm_name             = var.windowsvm_primary_config.vm_name
@@ -11,7 +11,7 @@ module "primary_windowsvm" {
   environment         = var.windowsvm_primary_config.environment
   tags                = var.windowsvm_primary_config.tags
   subnet_id           = module.primary_vnet.subnet_ids["app"]
-}
+}*/
 
 # Windows VM in Secondary VNet
 /*module "secondary_windowsvm" {
@@ -29,7 +29,7 @@ module "primary_windowsvm" {
 }*/
 
 # Windows VM in Secondary VNet
-module "third_windowsvm" {
+/*module "third_windowsvm" {
   source = "./modules/windowsvm"
 
   vm_name             = var.windowsvm_third_config.vm_name
@@ -41,5 +41,5 @@ module "third_windowsvm" {
   environment         = var.windowsvm_third_config.environment
   tags                = var.windowsvm_third_config.tags
   subnet_id           = module.secondary_vnet.subnet_ids["app"]
-}
+}*/
 

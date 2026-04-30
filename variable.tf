@@ -33,6 +33,50 @@ variable "vnet_config" {
   }))
 }
 
+variable "primary_vnet_nsg_name" {
+  type        = string
+  description = "Optional name for the primary VNet network security group"
+  default     = null
+}
+
+variable "primary_vnet_nsg_security_rules" {
+  type = list(object({
+    name                       = string
+    priority                   = number
+    direction                  = string
+    access                     = string
+    protocol                   = string
+    source_port_range          = string
+    destination_port_range     = string
+    source_address_prefix      = string
+    destination_address_prefix = string
+  }))
+  description = "Optional list of security rules for the primary VNet NSG"
+  default     = []
+}
+
+variable "secondary_vnet_nsg_name" {
+  type        = string
+  description = "Optional name for the secondary VNet network security group"
+  default     = null
+}
+
+variable "secondary_vnet_nsg_security_rules" {
+  type = list(object({
+    name                       = string
+    priority                   = number
+    direction                  = string
+    access                     = string
+    protocol                   = string
+    source_port_range          = string
+    destination_port_range     = string
+    source_address_prefix      = string
+    destination_address_prefix = string
+  }))
+  description = "Optional list of security rules for the secondary VNet NSG"
+  default     = []
+}
+
 variable "windowsvm_primary_config" {
   type = object({
     vm_name       = string
